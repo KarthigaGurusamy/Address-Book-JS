@@ -33,6 +33,7 @@ const editData = (editId) => {
   // phnoInputRef.value = val.Phno;
   // addressInputRef.value = val.Address;
   isEdited = editId;
+  //console.log(editId);
   for (let i of data) {
     if (i.Id === editId) {
       buttonRef.innerText = "Edit";
@@ -46,6 +47,9 @@ const editData = (editId) => {
 const displayMethod = () => {
   let personsData = "";
   for (let addressdata of data) {
+    if(addressdata.Name==="" || addressdata.Address===""||addressdata.Phno===""){
+      continue;
+    }
     personsData += `<div class="d-flex align-items-center justify-content-between p-2 border-bottom border-primary">
         <p class="fs-5 m-0">${addressdata.Name}</p>
         <p class="fs-5 m-0">${addressdata.Phno}</p>
@@ -61,7 +65,7 @@ const displayMethod = () => {
 };
 
 buttonRef.addEventListener("click", () => {
-  if (nameInputRef !== "" && phnoInputRef !== "" && addressInputRef !== "") {
+  if (nameInputRef !== ""  && phnoInputRef !== "" && addressInputRef !== "") {
     if (isEdited === 0) {
       data.push({
         Id: ++id,
